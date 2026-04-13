@@ -244,9 +244,9 @@ const Home: NextPage = () => {
                 <span
                   className="text-lg font-semibold px-3 py-1 rounded-md"
                   style={{
-                    color: isPositive ? "#4ade80" : "#F5E6E0",
-                    background: isPositive ? "rgba(74, 222, 128, 0.1)" : "rgba(127, 29, 29, 0.3)",
-                    border: `1px solid ${isPositive ? "rgba(74, 222, 128, 0.2)" : "rgba(127, 29, 29, 0.4)"}`,
+                    color: isPositive ? "#4ade80" : "#C41E3A",
+                    background: isPositive ? "rgba(74, 222, 128, 0.1)" : "rgba(196, 30, 58, 0.15)",
+                    border: `1px solid ${isPositive ? "rgba(74, 222, 128, 0.2)" : "rgba(196, 30, 58, 0.3)"}`,
                     fontFamily: "var(--font-mono), monospace",
                   }}
                 >

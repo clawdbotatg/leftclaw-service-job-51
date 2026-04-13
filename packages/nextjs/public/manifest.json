@@ -1,5 +1,6 @@
 {
-  "name": "Scaffold-ETH 2 DApp",
-  "description": "A DApp built with Scaffold-ETH",
+  "name": "CLAWD Token Dashboard",
+  "short_name": "CLAWD Dashboard",
+  "description": "Live CLAWD token price dashboard on Base",
   "iconPath": "logo.svg"
 }
