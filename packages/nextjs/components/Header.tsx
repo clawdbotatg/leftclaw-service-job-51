@@ -1,102 +1,72 @@
 "use client";
 
-import React, { useRef } from "react";
-import Image from "next/image";
+import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { hardhat } from "viem/chains";
-import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
-import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
-import { useOutsideClick, useTargetNetwork } from "~~/hooks/scaffold-eth";
 
-type HeaderMenuLink = {
-  label: string;
-  href: string;
-  icon?: React.ReactNode;
-};
-
-export const menuLinks: HeaderMenuLink[] = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Debug Contracts",
-    href: "/debug",
-    icon: <BugAntIcon className="h-4 w-4" />,
-  },
-];
-
-export const HeaderMenuLinks = () => {
-  const pathname = usePathname();
-
-  return (
-    <>
-      {menuLinks.map(({ label, href, icon }) => {
-        const isActive = pathname === href;
-        return (
-          <li key={href}>
-            <Link
-              href={href}
-              passHref
-              className={`${
-                isActive ? "bg-secondary shadow-md" : ""
-              } hover:bg-secondary hover:shadow-md focus:!bg-secondary active:!text-neutral py-1.5 px-3 text-sm rounded-full gap-2 grid grid-flow-col`}
-            >
-              {icon}
-              <span>{label}</span>
-            </Link>
-          </li>
-        );
-      })}
-    </>
-  );
-};
-
-/**
- * Site header
- */
 export const Header = () => {
-  const { targetNetwork } = useTargetNetwork();
-  const isLocalNetwork = targetNetwork.id === hardhat.id;
-
-  const burgerMenuRef = useRef<HTMLDetailsElement>(null);
-  useOutsideClick(burgerMenuRef, () => {
-    burgerMenuRef?.current?.removeAttribute("open");
-  });
-
   return (
-    <div className="sticky lg:static top-0 navbar bg-base-100 min-h-0 shrink-0 justify-between z-20 shadow-md shadow-secondary px-0 sm:px-2">
-      <div className="navbar-start w-auto lg:w-1/2">
-        <details className="dropdown" ref={burgerMenuRef}>
-          <summary className="ml-1 btn btn-ghost lg:hidden hover:bg-transparent">
-            <Bars3Icon className="h-1/2" />
-          </summary>
-          <ul
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow-sm bg-base-100 rounded-box w-52"
-            onClick={() => {
-              burgerMenuRef?.current?.removeAttribute("open");
-            }}
+    <div
+      className="sticky top-0 z-20 w-full"
+      style={{
+        background: "rgba(10, 10, 15, 0.85)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "1px solid rgba(139, 26, 26, 0.2)",
+      }}
+    >
+      <div className="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
+        <Link href="/" className="flex items-center gap-3 no-underline">
+          <span className="text-2xl animate-lobster-glow" role="img" aria-label="lobster claw">
+            <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M32 8C18 8 12 20 12 32C12 44 20 56 32 56C44 56 52 44 52 32C52 20 46 8 32 8Z"
+                fill="#8B1A1A"
+                opacity="0.3"
+              />
+              <path
+                d="M20 28C16 20 10 18 8 22C6 26 12 34 18 32L20 28Z"
+                fill="#C41E3A"
+                stroke="#8B1A1A"
+                strokeWidth="1"
+              />
+              <path
+                d="M44 28C48 20 54 18 56 22C58 26 52 34 46 32L44 28Z"
+                fill="#C41E3A"
+                stroke="#8B1A1A"
+                strokeWidth="1"
+              />
+              <path
+                d="M24 24C22 18 18 14 16 16C14 18 18 26 24 28L24 24Z"
+                fill="#C41E3A"
+                stroke="#8B1A1A"
+                strokeWidth="0.5"
+              />
+              <path
+                d="M40 24C42 18 46 14 48 16C50 18 46 26 40 28L40 24Z"
+                fill="#C41E3A"
+                stroke="#8B1A1A"
+                strokeWidth="0.5"
+              />
+              <ellipse cx="32" cy="36" rx="10" ry="12" fill="#8B1A1A" />
+              <ellipse cx="32" cy="34" rx="8" ry="9" fill="#C41E3A" opacity="0.6" />
+              <circle cx="28" cy="30" r="2" fill="#F5E6E0" opacity="0.8" />
+              <circle cx="36" cy="30" r="2" fill="#F5E6E0" opacity="0.8" />
+              <circle cx="28" cy="30" r="1" fill="#0a0a0f" />
+              <circle cx="36" cy="30" r="1" fill="#0a0a0f" />
+            </svg>
+          </span>
+          <span
+            className="text-xl font-bold tracking-wide"
+            style={{ color: "#F5E6E0", fontFamily: "var(--font-inter), sans-serif" }}
           >
-            <HeaderMenuLinks />
-          </ul>
-        </details>
-        <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6 shrink-0">
-          <div className="flex relative w-10 h-10">
-            <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold leading-tight">Scaffold-ETH</span>
-            <span className="text-xs">Ethereum dev stack</span>
-          </div>
+            CLAWD
+          </span>
         </Link>
-        <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
-          <HeaderMenuLinks />
-        </ul>
-      </div>
-      <div className="navbar-end grow mr-4">
-        <RainbowKitCustomConnectButton />
-        {isLocalNetwork && <FaucetButton />}
+        <span
+          className="text-xs tracking-widest uppercase"
+          style={{ color: "rgba(245, 230, 224, 0.4)", fontFamily: "var(--font-inter), sans-serif" }}
+        >
+          Token Dashboard
+        </span>
       </div>
     </div>
   );
